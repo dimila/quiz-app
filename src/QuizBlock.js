@@ -1,21 +1,19 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Spiel from './assets/Spiel.jpg'
+import spielimage from './assets/Spiel.jpg'
 
-const QuizBlock = styled.div`
+const QuizBlockStyled = styled.div`
   max-width: 370px;
   background-color: #fff;
   text-align: center;
   padding-bottom: 30px;
-  @media (max-width: 640px) {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
 `
-const QuizImg = styled.img`
+
+const QuizImgStyled = styled.img`
   max-width: 100%;
 `
-const QuizHead = styled.h3`
+
+const QuizHeadStyled = styled.h3`
   font-size: 24px;
   margin-top: 40px;
   @media (max-width: 640px) {
@@ -23,7 +21,7 @@ const QuizHead = styled.h3`
   }
 `
 
-const QuizDescription = styled.div`
+const QuizDescriptionStyled = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -31,22 +29,24 @@ const QuizDescription = styled.div`
   padding: 0 15px;
 `
 
-const QuizData = styled.span`
+const QuizDataStyled = styled.span`
   font-size: 15px;
 `
 
-const QuizAdress = styled.p`
+const QuizAdressStyled = styled.p`
   font-size: 15px;
   margin-left: 5px;
 `
 
-export default () => (
-  <QuizBlock>
-    <QuizImg src={Spiel} alt="Spiel" />
-    <QuizHead>Quiz 25 - HAMBURG</QuizHead>
-    <QuizDescription>
-      <QuizData>15. Okt., 19:00 – 21:30</QuizData>
-      <QuizAdress>Hard Rock Cafe Hamburg</QuizAdress>
-    </QuizDescription>
-  </QuizBlock>
-)
+export default function Card() {
+  return (
+    <QuizBlockStyled>
+      <QuizImgStyled src={spielimage} alt="spielimage" />
+      <QuizHeadStyled>Quiz 25 - HAMBURG</QuizHeadStyled>
+      <QuizDescriptionStyled>
+        <QuizDataStyled>15. Okt., 19:00 – 21:30</QuizDataStyled>
+        <QuizAdressStyled>Hard Rock Cafe Hamburg</QuizAdressStyled>
+      </QuizDescriptionStyled>
+    </QuizBlockStyled>
+  )
+}
