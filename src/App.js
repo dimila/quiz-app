@@ -2,17 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Container from './Container'
 import QuizBlock from './QuizBlock'
-// import backgroundBlue from './assets/blue-background.jpg'
+import backgroundBlue from './assets/blue-background.jpg'
 
 const QuizStyled = styled.div`
-  /* background-image: backgroundBlue; */
-  background: linear-gradient(
-    to bottom,
-    rgba(109, 179, 242, 1) 0%,
-    rgba(84, 163, 238, 1) 31%,
-    rgba(54, 144, 240, 1) 68%,
-    rgba(30, 105, 222, 1) 100%
-  );
+  background-image: url(${backgroundBlue});
   padding-bottom: 140px;
   padding-top: 40px;
 `
