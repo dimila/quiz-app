@@ -7,6 +7,7 @@ const QuizBlockStyled = styled.div`
   background-color: #fff;
   text-align: center;
   padding-bottom: 30px;
+  margin-bottom: 20px;
 `
 
 const QuizImgStyled = styled.img`
@@ -16,9 +17,6 @@ const QuizImgStyled = styled.img`
 const QuizHeadStyled = styled.h3`
   font-size: 24px;
   margin-top: 40px;
-  @media (max-width: 640px) {
-    font-size: 18px;
-  }
 `
 
 const QuizDescriptionStyled = styled.div`
