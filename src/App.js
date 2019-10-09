@@ -4,6 +4,19 @@ import Container from './Container'
 import QuizBlock from './QuizBlock'
 import backgroundBlue from './assets/blue-background.jpg'
 
+export default () => (
+  <QuizStyled>
+    <Container>
+      <QuizHeadStyled>Einstein Quiz</QuizHeadStyled>
+      <QuizContentStyled>
+        <QuizBlock />
+        <QuizBlock />
+        <QuizBlock />
+      </QuizContentStyled>
+    </Container>
+  </QuizStyled>
+)
+
 const QuizStyled = styled.div`
   background-image: url(${backgroundBlue});
   padding-bottom: 140px;
@@ -24,16 +37,3 @@ const QuizContentStyled = styled.div`
   margin-top: 70px;
   flex-direction: column;
 `
-
-export default () => (
-  <QuizStyled>
-    <Container>
-      <QuizHeadStyled>Next Quiz Events</QuizHeadStyled>
-      <QuizContentStyled>
-        <QuizBlock />
-        <QuizBlock />
-        <QuizBlock />
-      </QuizContentStyled>
-    </Container>
-  </QuizStyled>
-)

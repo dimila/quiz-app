@@ -2,6 +2,19 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import spielimage from './assets/Spiel.jpg'
 
+export default function Card() {
+  return (
+    <QuizBlockStyled>
+      <QuizImgStyled src={spielimage} alt="spielimage" />
+      <QuizHeadStyled>Quiz 25 - HAMBURG</QuizHeadStyled>
+      <QuizDescriptionStyled>
+        <QuizDataStyled>15. Okt., 19:00 – 21:30</QuizDataStyled>
+        <QuizAdressStyled>Hard Rock Cafe Hamburg</QuizAdressStyled>
+      </QuizDescriptionStyled>
+    </QuizBlockStyled>
+  )
+}
+
 const QuizBlockStyled = styled.div`
   max-width: 370px;
   background-color: #fff;
@@ -35,16 +48,3 @@ const QuizAdressStyled = styled.p`
   font-size: 15px;
   margin-left: 5px;
 `
-
-export default function Card() {
-  return (
-    <QuizBlockStyled>
-      <QuizImgStyled src={spielimage} alt="spielimage" />
-      <QuizHeadStyled>Quiz 25 - HAMBURG</QuizHeadStyled>
-      <QuizDescriptionStyled>
-        <QuizDataStyled>15. Okt., 19:00 – 21:30</QuizDataStyled>
-        <QuizAdressStyled>Hard Rock Cafe Hamburg</QuizAdressStyled>
-      </QuizDescriptionStyled>
-    </QuizBlockStyled>
-  )
-}
