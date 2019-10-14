@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Container from './Container'
+import Container from '../Container'
 import QuizBlock from './QuizBlock'
-import backgroundBlue from './assets/blue-background.jpg'
+import backgroundBlue from '../assets/blue-background.jpg'
 
 export default () => (
   <QuizStyled>

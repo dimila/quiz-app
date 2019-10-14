@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import spielimage from './assets/Spiel.jpg'
+import spielimage from '../assets/Spiel.jpg'
 
 export default function Card() {
   return (

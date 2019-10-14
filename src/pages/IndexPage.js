@@ -1,8 +1,16 @@
 import React from 'react'
-import App from '../App'
+import Quiz from '../Quiz/Quiz'
+import Footer from '../Footer'
+import Header from '../Header'
 
 function IndexPage() {
-  return <App />
+  return (
+    <>
+      <Header />
+      <Quiz />
+      <Footer />
+    </>
+  )
 }
 
 export default IndexPage

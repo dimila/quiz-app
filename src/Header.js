@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import einsteinLogo from './assets/einstein2.svg'
+import Nav from './Nav'
+import { Link } from 'react-router-dom'
 
 const Header = styled.div`
   padding: 10px 0 15px 0;
@@ -16,19 +18,16 @@ const Header = styled.div`
 `
 
 const Headerlogo = styled.img`
-  width: 74px;
-  height: 70px;
+  width: 34px;
+  height: 35px;
   color: transparent;
 `
 
 export default () => (
   <Header>
-    <Headerlogo
-      //   src={
-      //     'https://static.wixstatic.com/media/fabf0a_4bfdc02320534564b006589a3e7a9527~mv2.png/v1/fill/w_114,h_50,al_c,q_80,usm_0.66_1.00_0.01/monkey-quiz-logo.webp'
-      //   }
-      src={einsteinLogo}
-      alt="Einstein Logo"
-    />
+    <Link to="/">
+      <Headerlogo src={einsteinLogo} alt="Einstein Logo"></Headerlogo>
+    </Link>
+    <Nav />
   </Header>
 )
