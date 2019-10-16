@@ -17,7 +17,6 @@ const QuizHeader = styled.h1`
 const QuizCity = styled.span`
   text-transform: uppercase;
   padding: 0.2rem 0.5rem;
-  background-color: #ff9652;
   color: #fff;
   border-radius: 5px;
   margin-bottom: 2rem;
@@ -32,7 +31,6 @@ const QuizFooter = styled.div`
 const QuizLocation = styled.div``
 
 export default () => {
-
   return (
     <>
       <Header />
@@ -63,10 +61,7 @@ export default () => {
         </Row>
 
         <QuizFooter>
-          <Button
-          >
-            Register
-          </Button>
+          <Button>Register</Button>
         </QuizFooter>
       </QuizInfo>
 

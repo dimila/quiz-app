@@ -19,9 +19,7 @@ const QuizHead = styled.h3`
   text-decoration: none;
   font-size: 24px;
   margin: 0;
-  @media (max-width: 640px) {
-    font-size: 18px;
-  }
+  font-size: 18px;
 `
 
 const QuizDescription = styled.div`

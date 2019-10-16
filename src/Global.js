@@ -8,11 +8,7 @@ import { ReactComponent as User } from './static/user.svg'
 
 const Button = styled.button`
   border: none;
-  background: linear-gradient(
-    to right,
-    rgba(255, 150, 82, 0.8) 0%,
-    rgba(255, 150, 82, 1) 100%
-  );
+  background: #0000cd;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   padding: 7px 14px;
   color: #fff;
