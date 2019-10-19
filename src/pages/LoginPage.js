@@ -1,15 +1,7 @@
 import React from 'react'
-import Footer from '../Footer'
-import Header from '../Header'
 
 function LoginPage() {
-  return (
-    <>
-      <Header />
-      'Login Page'
-      <Footer />
-    </>
-  )
+  return <>'Login Page'</>
 }
 
 export default LoginPage

@@ -5,6 +5,10 @@ import { ReactComponent as Price } from './static/tag.svg'
 import { ReactComponent as Compass } from './static/compass.svg'
 import { ReactComponent as Like } from './static/like.svg'
 import { ReactComponent as User } from './static/user.svg'
+import { ReactComponent as Geo } from './static/geo.png'
+import { ReactComponent as Restaurant } from './static/restaurant.png'
+import { ReactComponent as Pfeil } from './static/pfeil.png'
+
 
 const Button = styled.button`
   border: none;
@@ -168,5 +172,8 @@ export {
   Compass,
   Like,
   User,
-  Icon
+  Icon,
+  Restaurant,
+  Geo,
+  Pfeil
 }

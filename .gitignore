@@ -1,5 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# replace with cloudname
+REACT_APP_CLOUDINARY_CLOUDNAME=dimila
+
+# replace with preset name
+REACT_APP_CLOUDINARY_PRESET=iuunb6d5
+
+
 # dependencies
 /node_modules
 /.pnp

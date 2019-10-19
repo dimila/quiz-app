@@ -34,7 +34,6 @@ const RegistrationFormPanel = styled.div`
   min-width: 350px;
   max-width: 370px;
   position: relative;
-
 `
 
 const Span = styled.span``
@@ -74,41 +73,11 @@ const CloseButton = styled.button`
 
 function RegistrationForm({ quiz, onClose }) {
   const [count, setCount] = useState(2)
-
+  console.log('Quiz: ' + quiz.city)
   return (
     <RegistrationFormWrapper>
       <RegistrationFormPanel>
         <Title>Registration Form</Title>
-
-        <Row>
-          <Icon>
-            <Clock />
-          </Icon>
-          {/* <Span><strong>Time:</strong> {new Date(quiz.date).toLocaleString()}</Span> */}
-          <Span>
-            <strong>Time:</strong> 21.10.19 19:00
-          </Span>
-        </Row>
-
-        <Row>
-          <Icon>
-            <Address />
-          </Icon>
-          {/* <Span><strong>Address:</strong> {quiz.location}</Span> */}
-          <Span>
-            <strong>Address:</strong> Velushis Bar, Wertstr. 13a
-          </Span>
-        </Row>
-
-        <Row>
-          <Icon>
-            <Price />
-          </Icon>
-          {/* <Span><strong>Price:</strong> {convertCurrency(quiz.currency, quiz.cost)}</Span> */}
-          <Span>
-            <strong>Price:</strong> 7 Euro
-          </Span>
-        </Row>
 
         <Row small>
           <Input type="text" placeholder="Name (*)" />
