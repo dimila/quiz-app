@@ -3,6 +3,54 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css'
 
+
+export default class extends React.Component {
+  state = {
+    isMenuOpen: false
+  }
+
+  onMenuToggle = () => {
+    this.setState(({ isMenuOpen }) => {
+      return {
+        isMenuOpen: !isMenuOpen
+      }
+    })
+  }
+
+  render() {
+    const { isMenuOpen } = this.state
+    const icon = isMenuOpen ? (
+      <i class="fa fa-times" aria-hidden="true"></i>
+    ) : (
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      )
+    return (
+      <div>
+        <Menu>
+          {link.map(({ id, to, link }) => (
+            <MenuItem key={id}>
+              <NavLink to={to}>{link}</NavLink>
+            </MenuItem>
+          ))}
+        </Menu>
+
+        <DropdownBtn onClick={this.onMenuToggle}>{icon}</DropdownBtn>
+        {isMenuOpen && (
+          <Dropdown>
+            <MobMenu>
+              {link.map(({ id, to, link }) => (
+                <MobMenuItem key={id}>
+                  <MobMenuLink to={to}>{link}</MobMenuLink>
+                </MobMenuItem>
+              ))}
+            </MobMenu>
+          </Dropdown>
+        )}
+      </div>
+    )
+  }
+}
+
 const link = [
   {
     id: 1,
@@ -80,49 +128,3 @@ const MobMenuLink = styled(Link)`
   text-decoration: none;
 `
 
-export default class extends React.Component {
-  state = {
-    isMenuOpen: false
-  }
-
-  onMenuToggle = () => {
-    this.setState(({ isMenuOpen }) => {
-      return {
-        isMenuOpen: !isMenuOpen
-      }
-    })
-  }
-
-  render() {
-    const { isMenuOpen } = this.state
-    const icon = isMenuOpen ? (
-      <i className="fas fa-times"></i>
-    ) : (
-      <i className="fas fa-bars"></i>
-    )
-    return (
-      <div>
-        <Menu>
-          {link.map(({ id, to, link }) => (
-            <MenuItem key={id}>
-              <NavLink to={to}>{link}</NavLink>
-            </MenuItem>
-          ))}
-        </Menu>
-
-        <DropdownBtn onClick={this.onMenuToggle}>{icon}</DropdownBtn>
-        {isMenuOpen && (
-          <Dropdown>
-            <MobMenu>
-              {link.map(({ id, to, link }) => (
-                <MobMenuItem key={id}>
-                  <MobMenuLink to={to}>{link}</MobMenuLink>
-                </MobMenuItem>
-              ))}
-            </MobMenu>
-          </Dropdown>
-        )}
-      </div>
-    )
-  }
-}
