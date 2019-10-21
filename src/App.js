@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import HomePage from './HomePage'
+import HomePage from './pages/HomePage'
 import styled from 'styled-components/macro'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
@@ -20,12 +20,12 @@ export default function App() {
     getCards().then(setCards)
   }, [])
 
-  function createCard(cardData) {
-    postCard(cardData).then(card => {
-      setCards([...cards, card])
-    })
-  }
-  function addUser() {}
+  // function createCard(cardData) {
+  //   postCard(cardData).then(card => {
+  //     setCards([...cards, card])
+  //   })
+  // }
+  // function addUser() {}
 
   return (
     <Router>
