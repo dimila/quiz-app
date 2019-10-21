@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css'
 
-
 export default class extends React.Component {
   state = {
     isMenuOpen: false
@@ -22,8 +21,8 @@ export default class extends React.Component {
     const icon = isMenuOpen ? (
       <i class="fa fa-times" aria-hidden="true"></i>
     ) : (
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      )
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    )
     return (
       <div>
         <Menu>
@@ -64,7 +63,7 @@ const link = [
   },
   {
     id: 3,
-    to: '/ratings',
+    to: '/rating',
     link: 'Ratings'
   },
   {
@@ -127,4 +126,3 @@ const MobMenuLink = styled(Link)`
   color: #000000;
   text-decoration: none;
 `
-

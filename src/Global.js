@@ -176,6 +176,28 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: ${props => props.align || 'left'};
 `
+const ModalTitle = styled.h1`
+  margin-top: 0;
+  text-align: center;
+  font-size: 25px;
+`
+
+const TableWrapper = styled.div`
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+`
+
+const Table = styled.table`
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255,150,82,1);
+  padding: 10px;
+`
+
+const Th = styled.th`
+  border-bottom: 1px solid rgba(255,150,82,1);
+`
 
 export {
   Button,
@@ -197,5 +219,9 @@ export {
   Section,
   P,
   Container,
-  Title
+  Title,
+  ModalTitle,
+  TableWrapper,
+  Table,
+  Th
 }
