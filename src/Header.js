@@ -23,10 +23,21 @@ const Headerlogo = styled.img`
   color: transparent;
 `
 
+// const HeaderTitle = styled.div`
+//   text-decoration: none;
+//   display: flex;
+//   align-items: center
+//   color: white
+//   font-size: 24px;
+// `
+
 export default () => (
   <Header>
     <Link to="/">
-      <Headerlogo src={einsteinLogo} alt="Einstein Logo"></Headerlogo>
+      <div>
+        <Headerlogo src={einsteinLogo} alt="Einstein Logo"></Headerlogo>
+        {/* <HeaderTitle>EinsteinQuizes</HeaderTitle> */}
+      </div>
     </Link>
     <Nav />
   </Header>

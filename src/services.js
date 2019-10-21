@@ -15,7 +15,25 @@ function fetchCards({ method = 'GET', id = '', data } = {}) {
     method,
     body: JSON.stringify(data),
     headers: {
-      'content-type': 'application/json',
-    },
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
+
+export function getUsers() {
+  return fetchUser()
+}
+
+export function postUser(data) {
+  return fetchUser({ method: 'POST', data })
+}
+
+function fetchUser({ method = 'GET', id = '', data } = {}) {
+  return fetch('/user/' + id, {
+    method,
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    }
   }).then(res => res.json())
 }

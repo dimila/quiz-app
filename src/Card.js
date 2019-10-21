@@ -82,7 +82,7 @@ export default function Card({
   function Answer({ text }) {
     return (
       <>
-        <hr />
+        {/* <hr /> */}
 
         <Row small>
           <Icon>
