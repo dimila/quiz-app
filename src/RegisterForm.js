@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { postUser } from './services'
+
 import {
   Input,
   Button,
@@ -12,6 +14,65 @@ import {
   Address,
   Price
 } from './Global'
+
+function RegistrationForm({ quiz, onClose, onRegister }) {
+  const [count, setCount] = useState(2)
+  console.log('TEST', typeof onSubmit)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    const data = Object.fromEntries(formData)
+    if (data['need_team'] === 'on') {
+      data.need_team = true
+    }
+    postUser(data)
+  }
+
+  return (
+    <RegistrationFormWrapper>
+      <RegistrationFormPanel onSubmit={handleSubmit}>
+        <Title>Registration Form</Title>
+
+        <Row small>
+          <Input name="name" type="text" placeholder="Name (*)" />
+        </Row>
+        <Row small>
+          <Input name="telephone" type="phone" placeholder="Telephone (*)" />
+        </Row>
+        <Row small>
+          <Input name="email" type="email" placeholder="Email" />
+        </Row>
+        <Row small>
+          <Input name="team_name" type="text" placeholder="Team Name" />
+        </Row>
+        <Row center>
+          <NumOfParticipants>Number of participants</NumOfParticipants>
+          <Range
+            name="nr_participants"
+            type="range"
+            min={2}
+            max={10}
+            step={1}
+            value={count}
+            defaultValue={2}
+            onChange={e => setCount(e.target.value)}
+          />
+          <CountOfParticipants>{count}</CountOfParticipants>
+        </Row>
+        <Row>
+          <Label>
+            <Checkbox name="need_team" type="checkbox" />I need a team
+          </Label>
+        </Row>
+        <Row center>
+          <Button>Register</Button>
+        </Row>
+        <CloseButton onClick={onClose}>x</CloseButton>
+      </RegistrationFormPanel>
+    </RegistrationFormWrapper>
+  )
+}
 
 const RegistrationFormWrapper = styled.div`
   position: fixed;
@@ -27,7 +88,7 @@ const RegistrationFormWrapper = styled.div`
   z-index: 10000;
 `
 
-const RegistrationFormPanel = styled.div`
+const RegistrationFormPanel = styled.form`
   background-color: #fff;
   padding: 20px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
@@ -70,59 +131,5 @@ const CloseButton = styled.button`
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   color: rgba(255, 150, 82, 1);
 `
-
-function RegistrationForm({ quiz, onClose }) {
-  const [count, setCount] = useState(2)
-  console.log('Quiz: ' + quiz.city)
-  return (
-    <RegistrationFormWrapper>
-      <RegistrationFormPanel>
-        <Title>Registration Form</Title>
-
-        <Row small>
-          <Input type="text" placeholder="Name (*)" />
-        </Row>
-
-        <Row small>
-          <Input type="phone" placeholder="Telephone (*)" />
-        </Row>
-
-        <Row small>
-          <Input type="email" placeholder="Email" />
-        </Row>
-
-        <Row small>
-          <Input type="text" placeholder="Team Name" />
-        </Row>
-
-        <Row center>
-          <NumOfParticipants>Number of participants</NumOfParticipants>
-          <Range
-            type="range"
-            min={2}
-            max={10}
-            step={1}
-            value={count}
-            defaultValue={2}
-            onChange={e => setCount(e.target.value)}
-          />
-          <CountOfParticipants>{count}</CountOfParticipants>
-        </Row>
-
-        <Row>
-          <Label>
-            <Checkbox type="checkbox" />I need a team
-          </Label>
-        </Row>
-
-        <Row center>
-          <Button>Register</Button>
-        </Row>
-
-        <CloseButton onClick={onClose}>x</CloseButton>
-      </RegistrationFormPanel>
-    </RegistrationFormWrapper>
-  )
-}
 
 export default RegistrationForm

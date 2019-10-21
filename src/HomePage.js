@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 export default function HomePage({ cards }) {
   return (
     <PageStyled>
-      {/* <h1>Homepage</h1> */}
+      <QuizHead>Einstein Quizes</QuizHead>
       {cards.map(card => (
         <Card
           key={card._id}
@@ -21,6 +21,15 @@ export default function HomePage({ cards }) {
     </PageStyled>
   )
 }
+
+const QuizHead = styled.h2`
+  font-size: 42px;
+  color: #fff;
+  text-align: center;
+  @media (max-width: 640px) {
+    font-size: 28px;
+  }
+`
 
 const PageStyled = styled.main`
   padding: 20px;

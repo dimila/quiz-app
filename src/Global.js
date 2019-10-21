@@ -9,7 +9,6 @@ import { ReactComponent as Geo } from './static/geo.png'
 import { ReactComponent as Restaurant } from './static/restaurant.png'
 import { ReactComponent as Pfeil } from './static/pfeil.png'
 
-
 const Button = styled.button`
   border: none;
   background: #0000cd;
@@ -159,6 +158,25 @@ const Icon = styled.div`
   }
 `
 
+const Section = styled.div`
+  padding: 50px 0;
+`
+
+const P = styled.p`
+  font-size: 20px
+`
+
+const Container = styled.div`
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+`
+
+const Title = styled.h1`
+  text-align: ${props => props.align || 'left'};
+`
+
 export {
   Button,
   Input,
@@ -175,5 +193,9 @@ export {
   Icon,
   Restaurant,
   Geo,
-  Pfeil
+  Pfeil,
+  Section,
+  P,
+  Container,
+  Title
 }
