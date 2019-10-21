@@ -10,7 +10,8 @@ import {
   Th
 } from '../Global'
 
-function RatingsPage() {
+function RatingsPage({ rating }) {
+
   'Hallo World'
   return (
     <Section>
@@ -25,26 +26,13 @@ function RatingsPage() {
               <Th>Score</Th>
             </thead>
             <tbody>
-              {/* <tr key={cm._id}>
-                  <td>{cm.name}</td>
-                  <td>{cm.city}</td>
-                  <td>{cm.score}</td> */}
-              {/* </tr> */}
-              <tr>
-                <td>LolMan</td>
-                <td>Hamburg</td>
-                <td>123</td>
+              {rating.map(cm =>
+                (<tr key={cm._id}>
+                <td>{cm.name}</td>
+                <td>{cm.city}</td>
+                <td>{cm.score}</td>
               </tr>
-              <tr>
-                <td>WomanPower</td>
-                <td>Hamburg</td>
-                <td>79</td>
-              </tr>
-              <tr>
-                <td>Woodoo</td>
-                <td>Berlin</td>
-                <td>68</td>
-              </tr>
+               ))}
             </tbody>
           </Table>
         </TableWrapper>

@@ -15,3 +15,5 @@ server.set('json spaces', 2)
 
 server.use('/cards', require('./routes/cards'))
 server.use('/user', require('./routes/user'))
+server.use('/rating', require('./routes/rating'))
+

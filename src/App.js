@@ -5,7 +5,7 @@ import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import RatingsPage from './pages/RatingsPage'
 
-import { getCards, postCard, patchCard, postUser } from './services'
+import { getCards, getRating, postCard, patchCard } from './services'
 
 import backgroundBlue from './assets/blue-background.jpg'
 import Footer from './Footer'
@@ -15,9 +15,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 export default function App() {
   const [cards, setCards] = useState([])
+  const [rating, setRating] = useState([])
 
   useEffect(() => {
     getCards().then(setCards)
+  }, [])
+
+  useEffect(() => {
+    getRating().then(setRating)
   }, [])
 
   // function createCard(cardData) {
@@ -39,7 +44,7 @@ export default function App() {
           /> */}
           <Route path="/about" render={() => <AboutPage />} />
           <Route path="/login" render={() => <LoginPage />} />
-          <Route path="/rating" render={() => <RatingsPage />} />
+          <Route path="/rating" render={() => <RatingsPage rating={rating} />} />
         </QuizContentStyled>
       </QuizStyled>
       <Footer />
