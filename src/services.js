@@ -51,3 +51,11 @@ function fetchRating({ method = 'GET', id = '', data } = {}) {
     }
   }).then(res => res.json())
 }
+
+export function deleteRating(id) {
+  return fetchRating({ method: 'DELETE', id })
+}
+
+export function editRating(id, data) {
+  return fetchRating({ method: 'PATCH', id, data })
+}

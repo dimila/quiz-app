@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import RegisterForm from './RegisterForm'
-
 import {
   Row,
   Clock,
@@ -136,7 +135,7 @@ const QuizImg = styled.img`
 `
 const QuizHead = styled.h3`
   text-decoration: none;
-  font-size: 24px;
+  font-size: 40px;
   margin: 0;
   font-size: 25px;
 `

@@ -8,6 +8,8 @@ import { ReactComponent as User } from './static/user.svg'
 import { ReactComponent as Geo } from './static/geo.png'
 import { ReactComponent as Restaurant } from './static/restaurant.png'
 import { ReactComponent as Pfeil } from './static/pfeil.png'
+import { ReactComponent as Success } from './static/success.svg'
+
 
 const Button = styled.button`
   border: none;
@@ -163,7 +165,7 @@ const Section = styled.div`
 `
 
 const P = styled.p`
-  font-size: 20px
+  font-size: 20px;
 `
 
 const Container = styled.div`
@@ -191,12 +193,68 @@ const TableWrapper = styled.div`
 const Table = styled.table`
   width: 100%;
   text-align: center;
-  border: 1px solid rgba(255,150,82,1);
+  border: 1px solid rgba(255, 150, 82, 1);
   padding: 10px;
 `
 
 const Th = styled.th`
-  border-bottom: 1px solid rgba(255,150,82,1);
+  border-bottom: 1px solid rgba(255, 150, 82, 1);
+`
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+`
+
+const ModalCloseButton = styled.button`
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 150, 82, 1);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  text-transform: uppercase;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 150, 82, 1);
+  background: linear-gradient(
+    to right,
+    rgba(255, 150, 82, 0.8) 0%,
+    rgba(255, 150, 82, 1) 100%
+  );
+  color: #fff;
+
+  &:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in;
+  }
+`
+const ModalWrapper = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,.1);
+  min-width: 350px;
+  max-width: 370px;
+  position: relative;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
 `
 
 export {
@@ -223,5 +281,9 @@ export {
   ModalTitle,
   TableWrapper,
   Table,
-  Th
+  Th,
+  Modal,
+  ModalCloseButton,
+  ModalWrapper,
+  Success
 }

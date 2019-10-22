@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     getRating().then(setRating)
-  }, [])
+  }, [rating])
 
   // function createCard(cardData) {
   //   postCard(cardData).then(card => {
