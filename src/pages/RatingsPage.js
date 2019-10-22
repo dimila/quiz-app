@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { deleteRating, editRating } from '../services'
+import { deleteRating, editRating, postRating } from '../services'
 import EditRatingForm from '../EditRatingForm'
+import Delete from '../static/delete.png'
 import {
   Section,
   Container,
@@ -8,44 +9,49 @@ import {
   Button,
   TableWrapper,
   Table,
-  Th
+  Th,
+  Row
 } from '../Global'
-
-function handleDelete(id) {
-  console.log('Id  ' + id)
-  return deleteRating(id)
-}
 
 function RatingsPage({ rating }) {
   const [cm, setCommand] = useState(null)
   const [isModalShow, setIsModalShow] = useState(false)
   const [updated, setUpdated] = useState(true)
 
+  function handleDelete(id) {
+    return deleteRating(id)
+  }
+
   const handleEdit = cm => {
     setCommand(cm)
     setIsModalShow(true)
   }
 
-  const handleSave = async (id, input) => {
-    let result
+  const handleCreate = () => {
+    setCommand(null)
+    setIsModalShow(true)
+  }
 
-    // if (!cm) {
-    //   const data = await api.createCommand(input)
-    //   if (data.result == "SUCCESS") {
-    //     result = true
-    //   } else {
-    //     result = false
-    //   }
-    // } else {
-    const data = await editRating(id, input)
-    if (data.result == 'SUCCESS') {
-      console.log('Data' + data)
-      result = true
+  const handleSave = (id, input) => {
+    let result
+    console.log('Hallo handleSave')
+    if (!cm) {
+      const data = postRating(input)
+      if (data.result == 'SUCCESS') {
+        result = true
+      } else {
+        result = false
+      }
     } else {
-      result = false
+      const data = editRating(id, input)
+      if (data.result == 'SUCCESS') {
+        result = true
+      } else {
+        result = false
+      }
+      setUpdated(true)
+      return result
     }
-    setUpdated(true)
-    return result
   }
 
   const handleCloseModal = () => {
@@ -60,7 +66,7 @@ function RatingsPage({ rating }) {
         <TableWrapper>
           <Table>
             <thead>
-              <Th>Team name</Th>
+              <Th>Team </Th>
               <Th>City</Th>
               <Th>Score</Th>
             </thead>
@@ -79,6 +85,10 @@ function RatingsPage({ rating }) {
             </tbody>
           </Table>
         </TableWrapper>
+
+        <Row style={{ justifyContent: 'center' }}>
+          <Button onClick={() => handleCreate()}>Add</Button>
+        </Row>
 
         {isModalShow && (
           <EditRatingForm

@@ -59,3 +59,7 @@ export function deleteRating(id) {
 export function editRating(id, data) {
   return fetchRating({ method: 'PATCH', id, data })
 }
+
+export function postRating(data) {
+  return fetchRating({ method: 'POST', data })
+}
