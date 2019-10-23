@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '../Card'
 import styled from 'styled-components/macro'
+import { deleteCard } from '../services'
 
 export default function HomePage({ cards }) {
+  const [updated, setUpdated] = useState(true)
+
+  function handleDelete(card) {
+    setUpdated(true)
+    return deleteCard(card._id)
+  }
+
   return (
     <PageStyled>
       <QuizHead>Einstein Quizes</QuizHead>
@@ -16,6 +24,7 @@ export default function HomePage({ cards }) {
           adress={card.adress}
           price={card.price}
           title={card.title}
+          onDelete={() => handleDelete(card)}
         />
       ))}
     </PageStyled>

@@ -9,6 +9,7 @@ import {
   Price,
   Icon,
   Button,
+  RoundButton,
   Geo,
   Restaurant,
   Pfeil
@@ -29,6 +30,7 @@ Card.defaultProps = {
 }
 
 export default function Card({
+  _id,
   img,
   title,
   date,
@@ -36,46 +38,53 @@ export default function Card({
   time,
   adress,
   price,
-  place
+  place,
+  onDelete
 }) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false)
   const [isShow, setIsShow] = useState(false)
-  
 
   return (
-  
+    <QuizBlockWrapper>
+      <QuizBlock onClick={toggleAnswer}>
+        {isShow && (
+          <RegisterForm
+            quiz={[date, city, price]}
+            onClose={() => setIsShow(false)}
+          />
+        )}
+        <QuizImg src={img} alt="spielimage" />
+        <QuizDescription>
+          <Row small>
+            <QuizData>
+              {new Date(date).toLocaleDateString('de-DE', {
+                weekday: 'long',
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit'
+              })}
+            </QuizData>
+          </Row>
 
-    <QuizBlock onClick={toggleAnswer}>
-      {isShow && <RegisterForm quiz={[date, city, price]} onClose={() => setIsShow(false)} />} 
-      <QuizImg src={img} alt="spielimage" />
-      <QuizDescription>
-        <Row small>
-          <QuizData>
-            {new Date(date).toLocaleDateString('de-DE', {
-              weekday: 'long',
-              year: '2-digit',
-              month: '2-digit',
-              day: '2-digit'
-            })}
-          </QuizData>
-        </Row>
+          <QuizHead>{title}</QuizHead>
 
-        <QuizHead>{title}</QuizHead>
+          <Row small>
+            <Icon>
+              <Address />
+            </Icon>
+            <QuizAdress>{city}</QuizAdress>
+          </Row>
+          {/* 
+        <Icon>
+          <Pfeil />
+        </Icon> */}
 
-        <Row small>
-          <Icon>
-            <Address />
-          </Icon>
-          <QuizAdress>{city}</QuizAdress>
-        </Row>
-
-        {/* <Icon> */}
-        {/* <Pfeil /> */}
-        {/* </Icon> */}
-
-        {isAnswerVisible && <Answer text={adress} />}
-      </QuizDescription>
-    </QuizBlock>
+          {isAnswerVisible && <Answer text={adress} />}
+        </QuizDescription>
+      </QuizBlock>
+      <QuizDeleteButton onClick={() => onDelete()}>X</QuizDeleteButton>
+      <QuizEditButton>E</QuizEditButton>
+    </QuizBlockWrapper>
   )
 
   function Answer({ text }) {
@@ -115,6 +124,40 @@ export default function Card({
     setIsAnswerVisible(!isAnswerVisible)
   }
 }
+
+const QuizBlockWrapper = styled.div`
+  text-decoration: none;
+  background-color: #fff;
+  /* padding-bottom: 30px; */
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  /* margin: 10px; */
+
+  width: calc((100% - 60px) / 3);
+
+  @media (max-width: 796px) {
+    width: calc((100% - 40px) / 2);
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+`
+
+const QuizDeleteButton = styled(RoundButton)`
+  position: absolute;
+  background-color: #fff;
+  top: -12px;
+  right: -12px;
+`
+
+const QuizEditButton = styled(RoundButton)`
+  position: absolute;
+  background-color: #fff;
+  top: -12px;
+  right: 12px;
+`
 
 const QuizFooter = styled.div`
   display: flex;

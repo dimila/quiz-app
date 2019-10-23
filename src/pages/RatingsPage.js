@@ -77,8 +77,8 @@ function RatingsPage({ rating }) {
                   <td>{cm.city}</td>
                   <td>{cm.score}</td>
                   <td>
-                    <Button onClick={() => handleEdit(cm)}>Edit</Button>
-                    <Button onClick={() => handleDelete(cm._id)}>Delete</Button>
+                    <Button onClick={() => handleEdit(cm)}>E</Button>
+                    <Button onClick={() => handleDelete(cm._id)}>X</Button>
                   </td>
                 </tr>
               ))}
