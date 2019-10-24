@@ -5,7 +5,7 @@ import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import RatingsPage from './pages/RatingsPage'
 
-import { getCards, getRating, postCard, patchCard } from './services'
+import { getCards, getRating } from './services'
 
 import backgroundBlue from './assets/blue-background.jpg'
 import Footer from './Footer'
@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     getRating().then(setRating)
-  }, [rating])
+  }, [])
 
   // function createCard(cardData) {
   //   postCard(cardData).then(card => {
@@ -37,14 +37,17 @@ export default function App() {
       <Header />
       <QuizStyled>
         <QuizContentStyled>
-          <Route exact path="/" render={() => <HomePage cards={cards} />} />
+          <Route exact path="/" render={() => <HomePage setCards = {setCards} cards={cards} />} />
           {/* <Route
             path="/settings"
             render={() => <SettingsPage onSubmit={createCard} />}
           /> */}
           <Route path="/about" render={() => <AboutPage />} />
           <Route path="/login" render={() => <LoginPage />} />
-          <Route path="/rating" render={() => <RatingsPage rating={rating} />} />
+          <Route
+            path="/rating"
+            render={() => <RatingsPage rating={rating} />}
+          />
         </QuizContentStyled>
       </QuizStyled>
       <Footer />

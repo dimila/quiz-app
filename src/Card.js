@@ -10,9 +10,10 @@ import {
   Icon,
   Button,
   RoundButton,
-  Geo,
-  Restaurant,
-  Pfeil
+  AddBlock,
+  AddBlockInner,
+  Arrow,
+  Shop
 } from './Global'
 
 Card.propTypes = {
@@ -22,7 +23,8 @@ Card.propTypes = {
   city: PropTypes.string,
   time: PropTypes.string,
   adress: PropTypes.string,
-  price: PropTypes.string
+  price: PropTypes.number,
+  location: PropTypes.string
 }
 
 Card.defaultProps = {
@@ -38,8 +40,10 @@ export default function Card({
   time,
   adress,
   price,
-  place,
-  onDelete
+  location,
+  onDelete,
+  onEdit,
+  onCreate
 }) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false)
   const [isShow, setIsShow] = useState(false)
@@ -53,15 +57,16 @@ export default function Card({
             onClose={() => setIsShow(false)}
           />
         )}
+
         <QuizImg src={img} alt="spielimage" />
         <QuizDescription>
           <Row small>
             <QuizData>
               {new Date(date).toLocaleDateString('de-DE', {
                 weekday: 'long',
-                year: '2-digit',
+                day: '2-digit',
                 month: '2-digit',
-                day: '2-digit'
+                year: '2-digit'
               })}
             </QuizData>
           </Row>
@@ -70,20 +75,30 @@ export default function Card({
 
           <Row small>
             <Icon>
+              <Shop />
+            </Icon>
+            <QuizAdress>{location}</QuizAdress>
+          </Row>
+
+          <Row small>
+            <Icon>
               <Address />
             </Icon>
             <QuizAdress>{city}</QuizAdress>
           </Row>
-          {/* 
-        <Icon>
-          <Pfeil />
-        </Icon> */}
+
+          <Icon>
+            <Arrow />
+          </Icon>
 
           {isAnswerVisible && <Answer text={adress} />}
         </QuizDescription>
       </QuizBlock>
       <QuizDeleteButton onClick={() => onDelete()}>X</QuizDeleteButton>
-      <QuizEditButton>E</QuizEditButton>
+      <QuizEditButton onClick={() => onEdit(Card)}>E</QuizEditButton>
+      <AddBlock onClick={() => onCreate()}>
+        <AddBlockInner>+</AddBlockInner>
+      </AddBlock>
     </QuizBlockWrapper>
   )
 
@@ -110,7 +125,7 @@ export default function Card({
           <Icon>
             <Price />
           </Icon>
-          <QuizAdress>{price}</QuizAdress>
+          <QuizAdress>{price} Euro</QuizAdress>
         </Row>
 
         <QuizFooter>

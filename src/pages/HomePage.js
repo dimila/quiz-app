@@ -1,14 +1,53 @@
 import React, { useState } from 'react'
 import Card from '../Card'
 import styled from 'styled-components/macro'
-import { deleteCard } from '../services'
+import { deleteCard, editCard, postCard } from '../services'
+import EditQuizForm from '../EditQuizForm'
 
-export default function HomePage({ cards }) {
+export default function HomePage({ cards, setCards }) {
   const [updated, setUpdated] = useState(true)
+  const [isModalShow, setIsModalShow] = useState(false)
+  const [card, setCard] = useState(null)
+
+  const handleSave = (id, input) => {
+    if (!id) {
+      postCard(input).then(card => setCards([...cards, card]))
+
+      setIsModalShow(false)
+    } else {
+      editCard(id, input).then(updatedCard => {
+        const index = cards.findIndex(card => card._id === updatedCard._id)
+        setCards([
+          ...cards.slice(0, index),
+          { ...card, ...updatedCard },
+          ...cards.slice(index + 1)
+        ])
+      })
+
+      setIsModalShow(false)
+    }
+  }
+
+  const handleCloseModal = () => {
+    setIsModalShow(false)
+  }
 
   function handleDelete(card) {
     setUpdated(true)
-    return deleteCard(card._id)
+    return deleteCard(card._id).then(updatedCard => {
+      const index = cards.findIndex(card => card._id === updatedCard._id)
+      setCards([...cards.slice(0, index), ...cards.slice(index + 1)])
+    })
+  }
+
+  function handleEdit(card) {
+    setUpdated(card)
+    setIsModalShow(true)
+  }
+
+  const handleCreate = () => {
+    setCard(null)
+    setIsModalShow(true)
   }
 
   return (
@@ -24,9 +63,20 @@ export default function HomePage({ cards }) {
           adress={card.adress}
           price={card.price}
           title={card.title}
+          location={card.location}
           onDelete={() => handleDelete(card)}
+          onEdit={() => handleEdit(card)}
+          onCreate={() => handleCreate(card)}
         />
       ))}
+
+      {isModalShow && (
+        <EditQuizForm
+          quiz={updated}
+          onSave={handleSave}
+          onClose={handleCloseModal}
+        />
+      )}
     </PageStyled>
   )
 }

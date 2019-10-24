@@ -8,7 +8,8 @@ const Card = mongoose.model('Card', {
   time: String,
   adress: String,
   price: String,
-  place: String
+  place: String,
+  location: String
 })
 
 module.exports = Card

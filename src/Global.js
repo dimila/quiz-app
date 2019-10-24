@@ -7,8 +7,9 @@ import { ReactComponent as Like } from './static/like.svg'
 import { ReactComponent as User } from './static/user.svg'
 import { ReactComponent as Geo } from './static/geo.png'
 import { ReactComponent as Restaurant } from './static/restaurant.png'
-import { ReactComponent as Pfeil } from './static/pfeil.png'
 import { ReactComponent as Success } from './static/success.svg'
+import { ReactComponent as Shop } from './static/shop.svg'
+import { ReactComponent as Arrow } from './static/arrow.svg'
 
 const Button = styled.button`
   border: none;
@@ -281,6 +282,61 @@ const RoundButton = styled.button`
     transition: opacity 0.2s ease-in;
   }
 `
+const Select = styled.select`
+  font: inherit;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  width: 100%;
+
+  &:focus {
+    outline: 1px solid rgba(255, 150, 82, 1);
+  }
+`
+const Textarea = styled.textarea`
+  font: inherit;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 6px 14px;
+`
+
+const AddBlock = styled.div`
+  text-decoration: none;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 10px;
+  min-height: 200px;
+  padding: 10px;
+  cursor: pointer;
+
+  width: calc((100% - 60px) / 3);
+
+  @media (max-width: 796px) {
+    width: calc((100% - 40px) / 2);
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+`
+
+const AddBlockInner = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 150, 82, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 80px;
+  color: rgba(255, 150, 82, 1);
+`
 
 export {
   Button,
@@ -298,7 +354,6 @@ export {
   Icon,
   Restaurant,
   Geo,
-  Pfeil,
   Section,
   P,
   Container,
@@ -311,5 +366,11 @@ export {
   ModalCloseButton,
   ModalWrapper,
   Success,
-  RoundButton
+  RoundButton,
+  Select,
+  Textarea,
+  AddBlock,
+  AddBlockInner,
+  Shop,
+  Arrow
 }

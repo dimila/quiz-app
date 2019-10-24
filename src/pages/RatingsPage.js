@@ -34,7 +34,7 @@ function RatingsPage({ rating }) {
 
   const handleSave = (id, input) => {
     let result
-    console.log('Hallo handleSave')
+
     if (!cm) {
       const data = postRating(input)
       if (data.result == 'SUCCESS') {
