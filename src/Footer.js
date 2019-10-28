@@ -1,29 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { postWhatsapp } from './services'
 
-export default () => (
-  <Footer>
-    <FooterContainer>
-      <FooterSubscribe>
-        <FooterHead>
-          Subscribe for WhatsApp <br /> Updates
-        </FooterHead>
-        <form>
-          <FooterInput type="number" placeholder="Your phone number" />
-          <FooterButton>subscribe</FooterButton>
-        </form>
-      </FooterSubscribe>
-      <FooterInfo>
-        <FooterInfoDescription>
-          <FooterInfoName>Dimitri Milayev</FooterInfoName>
-          Eiffestr. 604c, 20537 Hamburg
-          <FooterInfoEmail href="#">dm.events@gmx.com</FooterInfoEmail>
-          <FooterCopy>&copy; 2019 by Dimitri Milayev</FooterCopy>
-        </FooterInfoDescription>
-      </FooterInfo>
-    </FooterContainer>
-  </Footer>
-)
+export default () => {
+  const [tel, setTel] = useState('')
+
+  const handleCreate = event => {
+    event.preventDefault()
+    postWhatsapp({ tel })
+    setTel('')
+    event.target.reset()
+  }
+  const handleChange = event => {
+    setTel(event.target.value)
+  }
+
+  return (
+    <Footer>
+      <FooterContainer>
+        <FooterSubscribe>
+          <FooterHead>
+            Subscribe for WhatsApp <br /> Updates
+          </FooterHead>
+          <form onSubmit={event => handleCreate(event)}>
+            <FooterInput
+              type="number"
+              name="phone-number"
+              placeholder="Your phone number"
+              onChange={handleChange}
+            />
+            <FooterButton>subscribe</FooterButton>
+          </form>
+        </FooterSubscribe>
+        <FooterInfo>
+          <FooterInfoDescription>
+            <FooterInfoName>Dimitri Milayev</FooterInfoName>
+            Eiffestr. 604c, 20537 Hamburg
+            <FooterInfoEmail href="#">dm.events@gmx.com</FooterInfoEmail>
+            <FooterCopy>&copy; 2019 by Dimitri Milayev</FooterCopy>
+          </FooterInfoDescription>
+        </FooterInfo>
+      </FooterContainer>
+    </Footer>
+  )
+}
 
 const FooterInput = styled.input`
   font-size: 13px;

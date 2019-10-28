@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import RegisterForm from './RegisterForm'
@@ -47,6 +47,11 @@ export default function Card({
 }) {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false)
   const [isShow, setIsShow] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('token'))
+  }, [])
 
   return (
     <QuizBlockWrapper>
@@ -94,24 +99,26 @@ export default function Card({
           {isAnswerVisible && <Answer text={adress} />}
         </QuizDescription>
       </QuizBlock>
-      <QuizDeleteButton onClick={() => onDelete()}>X</QuizDeleteButton>
-      <QuizEditButton onClick={() => onEdit(Card)}>E</QuizEditButton>
-      <AddBlock onClick={() => onCreate()}>
-        <AddBlockInner>+</AddBlockInner>
-      </AddBlock>
+      {isLoggedIn && (
+        <>
+          <QuizDeleteButton onClick={() => onDelete()}>X</QuizDeleteButton>
+          <QuizEditButton onClick={() => onEdit(Card)}>E</QuizEditButton>
+          <AddBlock onClick={() => onCreate()}>
+            <AddBlockInner>+</AddBlockInner>
+          </AddBlock>
+        </>
+      )}
     </QuizBlockWrapper>
   )
 
   function Answer({ text }) {
     return (
       <>
-        {/* <hr /> */}
-
         <Row small>
           <Icon>
             <Clock />
           </Icon>
-          <QuizData>{time}</QuizData>
+          <QuizAdress>{time}</QuizAdress>
         </Row>
 
         <Row small>

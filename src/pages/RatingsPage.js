@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { deleteRating, editRating, postRating } from '../services'
 import EditRatingForm from '../EditRatingForm'
-import Delete from '../static/delete.png'
 import {
   Section,
   Container,
@@ -13,13 +12,20 @@ import {
   Row
 } from '../Global'
 
-function RatingsPage({ rating }) {
+function RatingsPage({ rating, setRating }) {
   const [cm, setCommand] = useState(null)
   const [isModalShow, setIsModalShow] = useState(false)
-  const [updated, setUpdated] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('token'))
+  }, [])
 
   function handleDelete(id) {
-    return deleteRating(id)
+    return deleteRating(id).then(updatedCard => {
+      const index = rating.findIndex(rat => rat._id === updatedCard._id)
+      setRating([...rating.slice(0, index), ...rating.slice(index + 1)])
+    })
   }
 
   const handleEdit = cm => {
@@ -36,20 +42,17 @@ function RatingsPage({ rating }) {
     let result
 
     if (!cm) {
-      const data = postRating(input)
-      if (data.result == 'SUCCESS') {
-        result = true
-      } else {
-        result = false
-      }
+      postRating(input).then(card => setRating([...rating, card]))
     } else {
-      const data = editRating(id, input)
-      if (data.result == 'SUCCESS') {
-        result = true
-      } else {
-        result = false
-      }
-      setUpdated(true)
+      editRating(id, input).then(updatedCard => {
+        const index = rating.findIndex(rat => rat._id === updatedCard._id)
+        setRating([
+          ...rating.slice(0, index),
+          { ...rating, ...updatedCard },
+          ...rating.slice(index + 1)
+        ])
+      })
+
       return result
     }
   }
@@ -76,19 +79,23 @@ function RatingsPage({ rating }) {
                   <td>{cm.name}</td>
                   <td>{cm.city}</td>
                   <td>{cm.score}</td>
-                  <td>
-                    <Button onClick={() => handleEdit(cm)}>E</Button>
-                    <Button onClick={() => handleDelete(cm._id)}>X</Button>
-                  </td>
+                  {isLoggedIn && (
+                    <td>
+                      <Button onClick={() => handleEdit(cm)}>E</Button>
+                      <Button onClick={() => handleDelete(cm._id)}>X</Button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
           </Table>
         </TableWrapper>
 
-        <Row style={{ justifyContent: 'center' }}>
-          <Button onClick={() => handleCreate()}>Add</Button>
-        </Row>
+        {isLoggedIn && (
+          <Row style={{ justifyContent: 'center' }}>
+            <Button onClick={() => handleCreate()}>Add</Button>
+          </Row>
+        )}
 
         {isModalShow && (
           <EditRatingForm

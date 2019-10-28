@@ -8,20 +8,8 @@ import {
   ModalCloseButton,
   ModalTitle,
   Success,
-  Icon,
-  Label,
-  Select,
-  Textarea
+  Icon
 } from './Global'
-
-const GAME_TYPES = [
-  'Movies & Music',
-  'Harry Potter',
-  "90's",
-  '18+',
-  'Game of Thrones',
-  "2000's"
-]
 
 function EditQuizForm({ quiz, onSave, onClose }) {
   const [saved, setSaved] = useState(false)
@@ -33,27 +21,22 @@ function EditQuizForm({ quiz, onSave, onClose }) {
   const timeRef = useRef()
   const locationRef = useRef()
   const priceRef = useRef()
-  //   const currencyRef = useRef()
-  //   const gameTypeRef = useRef()
-  //   const fullDescriptionRef = useRef()
+  const adressRef = useRef()
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const input = {
       title: titleRef.current.value,
       location: locationRef.current.value,
-      //   gameType: gameTypeRef.current.value,
       date: dateRef.current.value,
       time: timeRef.current.value,
       city: cityRef.current.value,
-      //   fullDescription: fullDescriptionRef.current.value,
       img: imgRef.current.value,
-      price: priceRef.current.value
-      //   currency: currencyRef.current.value
+      price: priceRef.current.value,
+      adress: adressRef.current.value
     }
 
     let id = quiz ? quiz._id : null
-    const result = await onSave(id, input)
-    console.log('Quiz ' + quiz)
+    const result = onSave(id, input)
 
     if (result) {
       setSaved(true)
@@ -94,7 +77,7 @@ function EditQuizForm({ quiz, onSave, onClose }) {
 
         <Row small>
           <Input
-            type="date" // ?? nicht übernopmmen
+            type="date"
             placeholder="Date"
             ref={dateRef}
             defaultValue={quiz ? quiz.date : ''}
@@ -119,34 +102,22 @@ function EditQuizForm({ quiz, onSave, onClose }) {
 
         <Row small>
           <Input
+            type="text"
+            placeholder="Adress"
+            ref={adressRef}
+            defaultValue={quiz ? quiz.adress : ''}
+          />
+        </Row>
+
+        <Row small>
+          <Input
             type="number"
             // min={0}
             placeholder="Price"
             ref={priceRef}
             defaultValue={quiz ? quiz.price : ''}
           />
-          {/* <Select ref={currencyRef} defaultValue={quiz ? quiz.currency : ''}>
-            <option value="EUR">Euro</option>
-            <option value="USD">USD</option>
-            <option value="RUB">Руб.</option>
-          </Select> */}
         </Row>
-
-        {/* <Row small>
-          <Select ref={gameTypeRef} defaultValue={quiz ? quiz.gameType : ''}>
-            {GAME_TYPES.map((game, i) => (
-              <option key={i}>{game}</option>
-            ))}
-          </Select>
-        </Row> */}
-
-        {/* <Row small>
-          <Textarea
-            placeholder="Description"
-            ref={fullDescriptionRef}
-            defaultValue={quiz ? quiz.fullDescription : ''}
-          />
-        </Row> */}
 
         <Row center>
           <Button onClick={handleSave}>

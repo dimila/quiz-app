@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { postUser } from './services'
 
-import {
-  Input,
-  Button,
-  Range,
-  Label,
-  Checkbox,
-  Row,
-  Icon,
-  Clock,
-  Address,
-  Price
-} from './Global'
+import { Input, Button, Range, Label, Checkbox, Row } from './Global'
 
-function RegistrationForm({ quiz, onClose, onRegister }) {
+function RegistrationForm({  onClose }) {
   const [count, setCount] = useState(2)
+  const [isModalShow, setIsModalShow] = useState(false)
+
   console.log('TEST', typeof onSubmit)
 
   function handleSubmit(event) {
@@ -27,7 +18,10 @@ function RegistrationForm({ quiz, onClose, onRegister }) {
       data.need_team = true
     }
     postUser(data)
+    setIsModalShow(false)
   }
+
+  
 
   return (
     <RegistrationFormWrapper>
@@ -97,7 +91,6 @@ const RegistrationFormPanel = styled.form`
   position: relative;
 `
 
-const Span = styled.span``
 
 const Title = styled.h1`
   margin-top: 0;

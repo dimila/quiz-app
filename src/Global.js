@@ -338,6 +338,21 @@ const AddBlockInner = styled.div`
   color: rgba(255, 150, 82, 1);
 `
 
+const LoginForm = styled.div`
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 50px 0;
+`
+
+const LoginLabel = styled.label`
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
 export {
   Button,
   Input,
@@ -372,5 +387,7 @@ export {
   AddBlock,
   AddBlockInner,
   Shop,
-  Arrow
+  Arrow,
+  LoginForm,
+  LoginLabel
 }

@@ -71,3 +71,32 @@ export function editRating(id, data) {
 export function postRating(data) {
   return fetchRating({ method: 'POST', data })
 }
+
+export function login(data) {
+  return fetchOrg({ method: 'POST', data })
+}
+
+export function fetchOrg({ method = 'GET', id = '', data } = {}) {
+  return fetch('/org/login' + id, {
+    method,
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}
+
+export function postWhatsapp(data) {
+  console.log(data)
+  return fetchWhatsapp({ method: 'POST', data })
+}
+
+function fetchWhatsapp({ method = 'GET', data } = {}) {
+  return fetch('/whatsapp/', {
+    method,
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(res => res.json())
+}

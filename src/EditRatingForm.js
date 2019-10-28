@@ -31,7 +31,7 @@ function EditRatingForm({ command, onSave, onClose }) {
     }
 
     let id = command ? command._id : null
-    const result = await onSave(id, input)
+    const result = onSave(id, input)
 
     if (result) {
       setSaved(true)
